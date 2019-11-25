@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import androidx.cardview.widget.CardView;
 
 public class ViewPagerAdapter extends PagerAdapter {
 
@@ -35,6 +36,9 @@ public class ViewPagerAdapter extends PagerAdapter {
         ImageView mImageView = createImageView(mContext, position);
         container.addView(mImageView);
         return mImageView;
+//        CardView card = createCardView(mContext, position);
+//        container.addView(card);
+//        return card;
     }
 
     @Override
@@ -48,7 +52,17 @@ public class ViewPagerAdapter extends PagerAdapter {
         ViewPager.LayoutParams layoutParams = new ViewPager.LayoutParams();
         imageview.setLayoutParams(layoutParams);
         imageview.setImageResource(mImageIDs[position]);
-        imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageview.setScaleType(ImageView.ScaleType.FIT_XY);
         return imageview;
+    }
+
+    private CardView createCardView(Context context, int positon) {
+        CardView card = new CardView(context);
+        ViewPager.LayoutParams layoutParams = new ViewPager.LayoutParams();
+        card.setLayoutParams(layoutParams);
+        card.setRadius(100);
+        card.setBackgroundResource(mImageIDs[positon]);
+        return card;
+
     }
 }

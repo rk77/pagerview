@@ -47,6 +47,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
         mViewPager = findViewById(R.id.view_pager);
         mPageNumTextView = findViewById(R.id.page_number);
+        mPageNumTextView.setText("1/" + IMAGES.length);
 
         mViewPager.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -57,7 +58,8 @@ public class FullscreenActivity extends AppCompatActivity {
 
         ViewPagerAdapter vpa = new ViewPagerAdapter(this, IMAGES);
         mViewPager.setAdapter(vpa);
-        mViewPager.setPageMargin(40);
+        mViewPager.setPageMargin(30);
+        mViewPager.setOffscreenPageLimit(7);
         mViewPager.setPageTransformer(true, new DepthPageTransformer());
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -67,7 +69,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                mPageNumTextView.setText(position + 1 + "");
+                mPageNumTextView.setText(position + 1 + "/" + IMAGES.length);
             }
 
             @Override
